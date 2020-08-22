@@ -4,6 +4,6 @@ Get audio notification when bitcoin ethereum any crypto currency goes down or up
 ![respect](https://thumbs.gfycat.com/SlimyBeneficialBassethound-max-1mb.gif)
 
 ### Run
-`python server.py <timeout> <coin1> <coin2> ...`
+`python server.py <timeout in seconds> <coin1 name> <coin2 name> ...`
 
 for example, `python server.py 3600 bitcoin ethereum chainlink ocean-protocol`
