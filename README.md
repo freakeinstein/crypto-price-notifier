@@ -5,3 +5,5 @@ Get audio notification when bitcoin ethereum any crypto currency goes down or up
 
 ### Run
 `python server.py <timeout> <coin1> <coin2> ...`
+
+for example, `python server.py 3600 bitcoin ethereum chainlink ocean-protocol`
