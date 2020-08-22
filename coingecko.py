@@ -9,6 +9,7 @@ positive_player = vlc.MediaPlayer("sounds/8d82b5_Angry_Birds_Star_Collect_Sound_
 negative_player = vlc.MediaPlayer("sounds/8d82b5_Angry_Birds_TNT_Sound_Effect.mp3")
 all_good_player = vlc.MediaPlayer("sounds/8d82b5_Angry_Birds_Golden_Egg_Sound_Effect.mp3")
 no_change_player = vlc.MediaPlayer("sounds/8d82b5_Angry_Birds_Bird_Destroyed_Sound_Effect.mp3")
+all_down_player = vlc.MediaPlayer("sounds/super-mario-death-sound-sound-effect.mp3")
 
 class gecko:
 
@@ -33,43 +34,59 @@ class gecko:
 
         self.old_values = current_values
 
-        return diff.tolist()
+        return current_values, diff.tolist()
 
     def generate_reports (self):
-        changes = self.find_change()
+        current_values, changes = self.find_change()
+        all_down = True
+        all_up = True
+        all_meh = True
 
         # generate sounds
         sound_array = []
         for change in changes:
             if change < 0:
-                sound_array.append(-100)
+                sound_array.append(-1)
+                all_up = False
+                all_meh = False
             elif change > 0:
-                sound_array.append(1000)
+                sound_array.append(1)
+                all_down = False
+                all_meh = False
             else:
                 sound_array.append(0)
         
-        sound_sum = np.sum(np.array(sound_array))
-        if sound_sum == len(changes)*1000:
+        if all_up:
             all_good_player.play()
             time.sleep(2)
             all_good_player.stop()
-        elif sound_sum == 0:
+            print("=== All coins are bullish ====")
+        elif all_meh:
             no_change_player.play()
             time.sleep(2)
             no_change_player.stop()
+            print("=== All coins are sideways ====")
+        elif all_down:
+            all_down_player.play()
+            time.sleep(2)
+            all_down_player.stop()
+            print("=== All coins are bearish ====")
         else:
-            for sound in sound_array:
+            for idx, sound in enumerate(sound_array):
                 if sound < 0:
                     negative_player.play()
                     time.sleep(1)
                     negative_player.stop()
+                    print("=== "+self.interested_coins[idx]+" is bullish. "+current_values[idx]+" + "+changes[idx]+" ====")
                 if sound == 0:
                     no_change_player.play()
                     time.sleep(2)
                     no_change_player.stop()
+                    print("=== "+self.interested_coins[idx]+" is sideways. "+current_values[idx]+" ====")
                 if sound > 0:
                     positive_player.play()
                     time.sleep(1)
                     positive_player.stop()
+                    print("=== "+self.interested_coins[idx]+" is bearish. "+current_values[idx]+" - "+(changes[idx]*-1)+" ====")
 
-        return (changes)
+        return current_values, changes
