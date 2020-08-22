@@ -77,16 +77,16 @@ class gecko:
                     negative_player.play()
                     time.sleep(1)
                     negative_player.stop()
-                    print("=== "+self.interested_coins[idx]+" is bullish. "+current_values[idx]+" + "+changes[idx]+" ====")
+                    print("=== "+self.interested_coins[idx]+" is bullish. "+str(current_values[idx])+" + "+str(changes[idx])+" ====")
                 if sound == 0:
                     no_change_player.play()
                     time.sleep(2)
                     no_change_player.stop()
-                    print("=== "+self.interested_coins[idx]+" is sideways. "+current_values[idx]+" ====")
+                    print("=== "+self.interested_coins[idx]+" is sideways. "+str(current_values[idx])+" ====")
                 if sound > 0:
                     positive_player.play()
                     time.sleep(1)
                     positive_player.stop()
-                    print("=== "+self.interested_coins[idx]+" is bearish. "+current_values[idx]+" - "+(changes[idx]*-1)+" ====")
+                    print("=== "+self.interested_coins[idx]+" is bearish. "+str(current_values[idx])+" - "+str(changes[idx]*-1)+" ====")
 
         return current_values, changes

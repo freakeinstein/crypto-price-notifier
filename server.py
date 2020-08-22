@@ -4,19 +4,28 @@ import sys, getopt
 import coingecko
 import time
 
-def main(args_in):
-    if len(args_in) > 0:
-        gecko_ = coingecko.gecko(args_in)
+def main(arg_in):
+    if len(arg_in) > 1:
+        timeout, coins_list = arg_in[0], arg_in[1:]
 
-        while (True):
-            try:
-                price, change = gecko_.generate_reports()
-                print("Raw data: ", price, change)
-            except Exception as e:
-                print("=== Something went wrong about: "+str(e)+" ===")
-            time.sleep(60)
+        if not timeout.isdigit():
+            timeout = 60
+        else:
+            timeout = int(timeout)
+
+        if len(coins_list) > 0:
+            print("Program will check CoinGecko for price every "+ str(timeout) +" seconds for the following coins:", coins_list)
+            gecko_ = coingecko.gecko(coins_list)
+
+            while (True):
+                try:
+                    price, change = gecko_.generate_reports()
+                    print("Raw data: ", price, change)
+                except Exception as e:
+                    print("=== Something went wrong about: "+str(e)+" ===")
+                time.sleep(60)
     else:
-        print("No coins are provided. Run the script as: python server.py <coin1> <coin2> ...")
+        print("Run the script as: python server.py <timeout> <coin1> <coin2> ...")
 
 
 if __name__ == "__main__":
