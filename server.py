@@ -25,7 +25,7 @@ def main(arg_in):
                     print("\n\n")
                 except Exception as e:
                     print("=== Something went wrong about: "+str(e)+" ===")
-                time.sleep(60)
+                time.sleep(timeout)
     else:
         print("Run the script as: python server.py <timeout> <coin1> <coin2> ...")
 
