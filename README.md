@@ -4,7 +4,8 @@ Get audio notification when bitcoin ethereum any crypto currency goes down or up
 ![respect](https://thumbs.gfycat.com/SlimyBeneficialBassethound-max-1mb.gif)
 
 ##### Prerequisite
-You need VLC player installed in your system
+You need VLC player installed in your system.
+
 Also run these commands:
 ```
 pip install pycoingecko
