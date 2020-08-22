@@ -77,7 +77,7 @@ class gecko:
             for idx, sound in enumerate(sound_array):
                 if sound < 0:
                     negative_player.play()
-                    print("=== "+self.interested_coins[idx]+" is bearish. "+str(current_values[idx])+" + "+str(changes[idx]*-1)+" ====")
+                    print("=== "+self.interested_coins[idx]+" is bearish. "+str(current_values[idx])+" - "+str(changes[idx]*-1)+" ====")
                     time.sleep(1)
                     negative_player.stop()
                 if sound == 0:
@@ -87,7 +87,7 @@ class gecko:
                     no_change_player.stop()
                 if sound > 0:
                     positive_player.play()
-                    print("=== "+self.interested_coins[idx]+" is bullish. "+str(current_values[idx])+" - "+str(changes[idx])+" ====")
+                    print("=== "+self.interested_coins[idx]+" is bullish. "+str(current_values[idx])+" + "+str(changes[idx])+" ====")
                     time.sleep(1)
                     positive_player.stop()
 
