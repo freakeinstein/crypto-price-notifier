@@ -19,8 +19,10 @@ def main(arg_in):
 
             while (True):
                 try:
+                    print("\n\n")
                     price, change = gecko_.generate_reports()
                     print("Raw data: ", price, change)
+                    print("\n\n")
                 except Exception as e:
                     print("=== Something went wrong about: "+str(e)+" ===")
                 time.sleep(60)

@@ -55,6 +55,8 @@ class gecko:
                 all_meh = False
             else:
                 sound_array.append(0)
+                all_up = False
+                all_down = False
         
         if all_up:
             all_good_player.play()
@@ -75,18 +77,18 @@ class gecko:
             for idx, sound in enumerate(sound_array):
                 if sound < 0:
                     negative_player.play()
+                    print("=== "+self.interested_coins[idx]+" is bearish. "+str(current_values[idx])+" + "+str(changes[idx]*-1)+" ====")
                     time.sleep(1)
                     negative_player.stop()
-                    print("=== "+self.interested_coins[idx]+" is bullish. "+str(current_values[idx])+" + "+str(changes[idx])+" ====")
                 if sound == 0:
                     no_change_player.play()
+                    print("=== "+self.interested_coins[idx]+" is sideways. "+str(current_values[idx])+" ====")
                     time.sleep(2)
                     no_change_player.stop()
-                    print("=== "+self.interested_coins[idx]+" is sideways. "+str(current_values[idx])+" ====")
                 if sound > 0:
                     positive_player.play()
+                    print("=== "+self.interested_coins[idx]+" is bullish. "+str(current_values[idx])+" - "+str(changes[idx])+" ====")
                     time.sleep(1)
                     positive_player.stop()
-                    print("=== "+self.interested_coins[idx]+" is bearish. "+str(current_values[idx])+" - "+str(changes[idx]*-1)+" ====")
 
         return current_values, changes
